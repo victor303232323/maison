@@ -1,0 +1,50 @@
+/* Asistente virtual (logo MA animado) */
+:root{--logo:url("imagenes/logo-ma.png")}
+.mal{display:block;position:relative;aspect-ratio:2/1;background:var(--logo) center/contain no-repeat}
+.mal::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.9) 50%,transparent 65%);background-size:250% 100%;background-position:150% 0;-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat;animation:shine 3.6s ease-in-out infinite}
+@keyframes shine{0%{background-position:150% 0}55%,100%{background-position:-60% 0}}
+.bot-fab{position:fixed;right:16px;bottom:calc(86px + env(safe-area-inset-bottom,0px));z-index:31;width:64px;height:64px;border-radius:50%;border:1px solid #6b5a35;background:radial-gradient(circle at 30% 25%,#2a2113,#0a0906);display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);animation:float 3.4s ease-in-out infinite}
+.bot-fab[hidden]{display:none}
+.bot-fab::before{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(212,175,95,.55);animation:ring 2.6s ease-out infinite}
+.bot-fab .mal{width:50px;transition:transform .3s;animation:glow 3.2s ease-in-out infinite}
+.bot-fab:hover .mal{transform:scale(1.12) rotate(-3deg)}
+.dot{position:absolute;top:2px;right:2px;width:12px;height:12px;border-radius:50%;background:#25d366;border:2px solid #0a0906}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes ring{0%{transform:scale(.95);opacity:.8}100%{transform:scale(1.35);opacity:0}}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 2px rgba(212,175,95,.3))}50%{filter:drop-shadow(0 0 8px rgba(255,214,120,.8))}}
+.av{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#2a2113,#0a0906);border:1px solid #6b5a35;flex:none}
+.av .mal{width:30px}.av.sm{width:30px;height:30px;align-self:flex-end}.av.sm .mal{width:22px}.av.sm .mal::after{animation:none;opacity:0}
+.bot{position:fixed;right:16px;bottom:calc(86px + env(safe-area-inset-bottom,0px));z-index:35;width:min(380px,calc(100vw - 32px));height:min(560px,calc(100vh - 150px));background:var(--bg);border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.35);display:flex;flex-direction:column;overflow:hidden;transform-origin:bottom right;animation:open .25s ease-out}
+@keyframes open{from{opacity:0;transform:scale(.92) translateY(10px)}}
+.bot[hidden]{display:none}
+.bot-h{display:flex;align-items:center;gap:10px;padding:12px 10px 12px 14px;background:linear-gradient(135deg,#14110c,#2a2113);color:#f3ecdc;border-bottom:1px solid #6b5a35}
+.bot-t{flex:1;min-width:0}.bot-t b{display:block;font-size:14px}
+.bot-t small{display:flex;align-items:center;gap:6px;color:#cfc5ae;font-size:11px}.bot-t u{width:7px;height:7px;border-radius:50%;background:#25d366;display:inline-block}
+.bot-h button{border:0;background:none;color:#f3ecdc;font-size:20px;cursor:pointer;opacity:.8;padding:4px 6px}.bot-h button:hover{opacity:1}
+.bot-m{flex:1;overflow:auto;padding:16px 14px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.r{display:flex;gap:8px;animation:pop .3s ease-out}.r.u{justify-content:flex-end}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}}
+.bw{max-width:82%;display:flex;flex-direction:column}.r.u .bw{align-items:flex-end}
+.msg-b,.msg-u{padding:10px 13px;font-size:14px;line-height:1.55;border-radius:14px}
+.msg-b{background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg-u{background:linear-gradient(135deg,#14110c,#2a2113);color:#f3ecdc;border-bottom-right-radius:4px}
+.bw time{font-size:10px;color:var(--muted);margin-top:3px}
+.msg-b a{color:var(--gold);text-decoration:underline}
+.msg-b small{display:block;color:var(--muted);font-size:12px;margin-top:6px;line-height:1.5}
+.typ i{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:var(--muted);animation:bounce 1s infinite}.typ i:nth-child(2){animation-delay:.15s}.typ i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.pc{display:flex;gap:10px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.pc-i{width:54px;height:54px;flex:none;display:grid;place-items:center;background:var(--surface);border-radius:8px}
+.pc-t{min-width:0}.pc-t b{display:block;font-size:13px}.pc-t span{display:block;font-size:12px;color:var(--muted)}
+.pc-a{display:flex;gap:8px;margin-top:6px;align-items:center}.pc-a a{font-size:12px}
+.pc-a button,.bot-btn{border:1px solid var(--text);background:none;color:var(--text);padding:4px 10px;font-size:12px;cursor:pointer;border-radius:999px}.pc-a button:hover,.bot-btn:hover{background:var(--text);color:var(--bg)}
+.bot-btn{margin-top:8px;display:inline-block}
+.bot-q{display:flex;gap:6px;overflow-x:auto;padding:4px 14px 10px;scrollbar-width:none}
+.bot-q button{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:7px 13px;border-radius:999px;font-size:12px;cursor:pointer;transition:border-color .2s,color .2s}.bot-q button:hover{border-color:var(--gold);color:var(--gold)}
+.bot-f{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line);background:var(--surface)}
+.bot-f input{flex:1;min-width:0;padding:11px 14px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--text);font-size:14px;outline:none}.bot-f input:focus{border-color:var(--gold)}
+.bot-f button{width:42px;border:0;border-radius:50%;background:linear-gradient(135deg,#14110c,#2a2113);color:#d4af5f;cursor:pointer;font-size:15px}
+.bot-n{text-align:center;font-size:10px;color:var(--muted);padding:0 0 8px;background:var(--surface)}
+.bot-tip{position:fixed;right:90px;bottom:calc(98px + env(safe-area-inset-bottom,0px));z-index:31;max-width:220px;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:12px 12px 4px 12px;padding:10px 26px 10px 12px;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.2);cursor:pointer;animation:pop .4s ease-out}
+.bot-tip[hidden]{display:none}.bot-tip button{position:absolute;top:2px;right:4px;border:0;background:none;color:var(--muted);font-size:16px;cursor:pointer}
+@media(max-width:520px){.bot{right:8px;left:8px;width:auto;height:min(600px,calc(100vh - 110px))}.bot-tip{right:84px}}
